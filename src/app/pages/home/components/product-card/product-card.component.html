@@ -1,8 +1,8 @@
 @if(product) {
     <div class="wrapper">
-        <img [src]="product.thumbUrl" [alt]="product.name + 'thumbnail url'" class="image">
+        <img [src]="product.thumbUrl" [alt]="product.name + ' thumbnail url'" class="image">
         <div class="price">${{product.price}}</div>
-        <div class="name">{{product.name}}</div>
+        <div class="name">{{product.name | truncate }}</div>
         <button class="button link" (click)="onAdd()">
             <span>+</span>Add
         </button>
