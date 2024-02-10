@@ -1,0 +1,21 @@
+@if (item) {
+<div class="container">
+  <div class="wrapper">
+    <img [src]="item.imageUrl" [alt]="item.name + ' thumbnail'" class="image" />
+    <div class="name">
+      {{ item.name }}
+      <div class="detail">
+        Free 90-day returns <br />
+        Gift Eligible <br />
+      </div>
+    </div>
+    <div class="price">
+      <strong>${{ item.price }}</strong>
+    </div>
+  </div>
+  <section class="controls">
+    <span class="remove" (click)="onRemoveItem()">Remove</span>
+    <h4>Quantity Stepper</h4>
+  </section>
+</div>
+}
