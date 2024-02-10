@@ -1,6 +1,9 @@
 import { Component, computed } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CardItemCardComponent } from './components/card-item-card/card-item-card.component';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +13,7 @@ import { CardItemCardComponent } from './components/card-item-card/card-item-car
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private http: HttpClient) {}
 
   count = computed(() => this.cartService.cart().count);
   total = computed(() => this.cartService.cart().total);
@@ -32,5 +35,32 @@ export class CartComponent {
   onRemoveItem(id: string) {
     const item = this.items().find(t => t.id === id);
     this.cartService.removeItem(item);
+  }
+
+  async onCheckout() {
+    const stripe = await loadStripe(environment.STRIPE_PK);
+    const body = this.cartService.cart().items;
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    this.http.post('http://localhost:8000/api/create-checkout-session', body, {headers: headers})
+      .subscribe({
+        next: async (response) => {
+          const session = response as any;
+          const result = await stripe.redirectToCheckout({
+            sessionId: session.id
+          });
+
+          if (result.error) {
+            console.log(result.error);
+          }
+        },
+        error: response => {
+          if (response.error) {
+            console.log(response.error);
+            
+          }
+        }
+      });
   }
 }
