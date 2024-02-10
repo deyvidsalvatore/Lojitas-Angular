@@ -15,7 +15,10 @@
   </div>
   <section class="controls">
     <span class="remove" (click)="onRemoveItem()">Remove</span>
-    <h4>Quantity Stepper</h4>
+    <app-quantity-stepper
+      [quantity]="item.quantity"
+      (quantityChange)="onQuantityChange($event)"
+    ></app-quantity-stepper>
   </section>
 </div>
 }

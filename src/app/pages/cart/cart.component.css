@@ -61,7 +61,7 @@
 .checkout {
   width: 100%;
   color: #ffffff;
-  background-color: var(—accent-color);
+  background-color: var(--accent-color);
   height: 36px;
   border-radius: 30px;
   cursor: pointer;
