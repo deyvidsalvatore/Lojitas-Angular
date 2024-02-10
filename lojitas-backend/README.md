@@ -2,7 +2,7 @@
 ## 🚨 Attention
 Create a .env file with your STRIPE KEY
 ```properties
-STRIPE_SECRET_KEY=sk_123456789...
+STRIPE_SECRET_KEY=sk_test_123456789...
 ```
 ## ⚙️ Dependencies
 - Node.js 21
