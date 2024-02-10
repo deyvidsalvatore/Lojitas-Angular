@@ -1,0 +1,19 @@
+.btn {
+  margin-top: 50px;
+  width: 100%;
+  color: #ffffff;
+  background-color: var(--accent-color);
+  height: 36px;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid gray;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
